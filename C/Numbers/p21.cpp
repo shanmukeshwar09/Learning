@@ -1,45 +1,60 @@
 // Arrange zeros to left and one's to right in an array
 
+// Arrange zeros to right and one's to left in an array
+
 #include <iostream>
 using namespace::std;
 
-int * compress(int arr[] , int start , int size) {
-    
-    for (int i = start; i < size; i++) {
-        arr[start] = arr[start + 1];
-    }
+void print(int arr[] , int size) {
 
-    return arr;
+    for (int i = 0; i < size; i++) cout << arr[i] << " ";
+
 }
 
 int main() {
     int size;
-    int temp;
+    int zeros = 0;
+    int ones = 0;
 
     cout << "Enter the size of an array : ";
     cin >> size;
 
     int array[size];
 
-    cout << "Enter 0 or 1 only";
+    cout << "Enter 0 or 1 only" << "\n";
 
     for (int i = 0; i < size; i++) {
         cout << "Enter element " << i + 1 << " : ";
-        cin >> array[i]; 
+        cin >> array[i];
+        if(array[i] == 0) zeros++;
     }
 
     for (int i = 0; i < size; i++) {
-        if (array[i] == 1) {
-            temp = array[i];
-            compress(array , i , size);
-            array[size - 1] = temp;
+        if(zeros > 0) {
+            array[i] = 0;
+            zeros --;
+        } else {
+            array[i] = 1;
+            ones ++;
         }
     }
 
+    cout << "Zeros arranged to the Left : ";
+
+    print(array , size);
+
     for (int i = 0; i < size; i++) {
-        cout << array[i] << " "; 
+        if(ones > 0) {
+            array[i] = 1;
+            ones--;
+        } else array[i] = 0;
     }
 
+    cout << "\n";
+
+    cout << "Zeros arranged to the Right : ";
     
+    print(array , size);
+
     return 0;
 }
