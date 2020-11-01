@@ -23,18 +23,17 @@ int main() {
     for (int i = 0; i < len; i++) {
         for (int j = 0; j < len; j++) {
             if (i != j) {
-                temp = arr[i] + arr[j];
-                if (temp < 0) temp = (-1) * temp;
-                if (temp < result) {
-                    result = temp;
-                    sum[0] = arr[i];
-                    sum[1] = arr[j];
+                if (arr[i] == arr[j]) {
+                    arr[i] = 0;
+                    arr[j] = 0;
                 }
             }
-        }
+        }   
     }
 
-    cout << "Pair = " << sum[0] << " , " << sum[1];
+    cout << "Repeated Odd number of times : ";
+    
+    for (int i = 0; i < len; i++) if (arr[i] != 0) cout << arr[i] << " ";
 
     return 0;
 }
